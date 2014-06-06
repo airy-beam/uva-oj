@@ -1,0 +1,33 @@
+#include <iostream>
+#include <string.h>
+
+int main() 
+{
+    using namespace std;
+    string inputString;
+    string correctedString;
+    string keyboard = "`1234567890-=QWERTYUIOP[]\\ASDFGHJKL;'ZXCVBNM,./";
+    while (getline(cin, inputString))
+    {
+        correctedString = "";
+        for (int i=0; i<inputString.length(); i++)
+        {
+            if (inputString[i] == ' ')
+                correctedString += " ";
+            else if (!(inputString[i] == '`' || inputString[i] == 'Q' ||
+                       inputString[i] == 'A' || inputString[i] == 'Z'))
+                    for (int j=0; j<keyboard.length(); j++)
+                    {
+                        if (keyboard[j]==inputString[i])
+                        {
+                            correctedString += keyboard[j-1];
+                            break;
+                        }
+                    }
+        }
+        cout << correctedString << "\n";
+    }
+    
+    return 0;
+}
+

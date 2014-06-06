@@ -1,0 +1,60 @@
+//---------------------------------------------------------------------------
+#include <iostream.h>
+
+unsigned long DetermineLength(unsigned long);
+void swap(unsigned long& a, unsigned long& b);
+
+int main()
+{
+    using std::cin;
+    using std::cout;
+    using std::endl;
+    unsigned long i, j;
+    while (cin >> i >> j)
+    {
+        cout << i << " " << j << " ";
+        if (i>j) swap (i,j);
+        unsigned long * length;
+        length = new unsigned long[j - i + 1];
+        unsigned long number;
+        unsigned long index;
+        for (number = i, index = 0; number<=j; number++, index++)
+        {
+            length[index] = DetermineLength(number);
+        }
+        unsigned long maxLength = length[0];
+        for (number = i, index = 0; number<=j; number++, index++)
+        {
+            if (length[index] > maxLength) maxLength = length[index];
+        }
+        cout << maxLength << endl;
+        delete [] length;
+    }
+    return 0;
+}
+
+unsigned long DetermineLength(unsigned long number)
+{
+    unsigned long count = 1;
+    while (number!=1)
+    {
+        if (number%2 == 0)
+        {
+            number = number / 2;
+        }
+        else
+        {
+            number = number * 3 + 1;
+        }
+        count+=1;
+    }
+    return count;
+}
+
+void swap(unsigned long& a, unsigned long& b)
+{
+    unsigned long temp = a;
+    a = b;
+    b = temp;
+}
+//---------------------------------------------------------------------------

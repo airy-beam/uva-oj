@@ -1,0 +1,120 @@
+//---------------------------------------------------------------------------
+#include <iostream>
+#include <string.h>
+
+int display[105][24];
+
+void putNumber(int, int, char);
+
+int main()
+{
+    using namespace std;
+    int s;
+    char n[10];
+    while ( true )
+    {
+        if ( !(cin >> s >> n) ) break;
+        if ( s==0 ) break;
+        int l = strlen(n);
+        int vertSpace = 2 * s + 3;
+        int horzSpace = (s + 3) * l - 1;
+        for (int i=1; i<=horzSpace; i++)
+            for (int j=1; j<=vertSpace; j++)
+                display[i][j] = 0;
+        int start = 1;
+        for (int i=0; i<l; i++)
+        {
+            putNumber(start, s, n[i]);
+            start+=(s+3);
+        }
+        for (int j=1; j<=vertSpace; j++)
+        {
+            for (int i=1; i<=horzSpace; i++)
+            {
+                if (display[i][j] == 0) cout << " ";
+                if (display[i][j] == 1) cout << "-";
+                if (display[i][j] == 2) cout << "|";
+            }
+            cout << endl;
+        }
+        cout << endl;
+    }
+    return 0;
+}
+
+void putNumber(int offset, int size, char digit)
+{
+    switch (digit)
+    {
+        case '1':
+            for (int i=2; i<2*size+3; i++) display[offset+size+1][i]=2;
+            display[offset+size+1][size+2]=0;
+            break;
+        case '2':
+            for (int i=2; i<size+2; i++) display[offset+size+1][i]=2;
+            for (int i=size+3; i<2*size+3; i++) display[offset][i]=2;
+            for (int i=offset+1; i<offset+size+1; i++) display[i][1]=1;
+            for (int i=offset+1; i<offset+size+1; i++) display[i][size+2]=1;
+            for (int i=offset+1; i<offset+size+1; i++) display[i][2*size+3]=1;
+            break;
+        case '3':
+            for (int i=2; i<size+2; i++) display[offset+size+1][i]=2;
+            for (int i=size+3; i<2*size+3; i++) display[offset+size+1][i]=2;
+            for (int i=offset+1; i<offset+size+1; i++) display[i][1]=1;
+            for (int i=offset+1; i<offset+size+1; i++) display[i][size+2]=1;
+            for (int i=offset+1; i<offset+size+1; i++) display[i][2*size+3]=1;
+            break;
+        case '4':
+            for (int i=2; i<size+2; i++) display[offset+size+1][i]=2;
+            for (int i=2; i<size+2; i++) display[offset][i]=2;
+            for (int i=size+3; i<2*size+3; i++) display[offset+size+1][i]=2;
+            for (int i=offset+1; i<offset+size+1; i++) display[i][size+2]=1;
+            break;
+        case '5':
+            for (int i=2; i<size+2; i++) display[offset][i]=2;
+            for (int i=size+3; i<2*size+3; i++) display[offset+size+1][i]=2;
+            for (int i=offset+1; i<offset+size+1; i++) display[i][1]=1;
+            for (int i=offset+1; i<offset+size+1; i++) display[i][size+2]=1;
+            for (int i=offset+1; i<offset+size+1; i++) display[i][2*size+3]=1;
+            break;
+        case '6':
+            for (int i=2; i<size+2; i++) display[offset][i]=2;
+            for (int i=size+3; i<2*size+3; i++) display[offset+size+1][i]=2;
+            for (int i=size+3; i<2*size+3; i++) display[offset][i]=2;
+            for (int i=offset+1; i<offset+size+1; i++) display[i][1]=1;
+            for (int i=offset+1; i<offset+size+1; i++) display[i][size+2]=1;
+            for (int i=offset+1; i<offset+size+1; i++) display[i][2*size+3]=1;
+            break;
+        case '7':
+            for (int i=2; i<size+2; i++) display[offset+size+1][i]=2;
+            for (int i=size+3; i<2*size+3; i++) display[offset+size+1][i]=2;
+            for (int i=offset+1; i<offset+size+1; i++) display[i][1]=1;
+            break;
+        case '8':
+            for (int i=2; i<size+2; i++) display[offset][i]=2;
+            for (int i=2; i<size+2; i++) display[offset+size+1][i]=2;
+            for (int i=size+3; i<2*size+3; i++) display[offset+size+1][i]=2;
+            for (int i=size+3; i<2*size+3; i++) display[offset][i]=2;
+            for (int i=offset+1; i<offset+size+1; i++) display[i][1]=1;
+            for (int i=offset+1; i<offset+size+1; i++) display[i][size+2]=1;
+            for (int i=offset+1; i<offset+size+1; i++) display[i][2*size+3]=1;
+            break;
+        case '9':
+            for (int i=2; i<size+2; i++) display[offset][i]=2;
+            for (int i=2; i<size+2; i++) display[offset+size+1][i]=2;
+            for (int i=size+3; i<2*size+3; i++) display[offset+size+1][i]=2;
+            for (int i=offset+1; i<offset+size+1; i++) display[i][1]=1;
+            for (int i=offset+1; i<offset+size+1; i++) display[i][size+2]=1;
+            for (int i=offset+1; i<offset+size+1; i++) display[i][2*size+3]=1;
+            break;
+        case '0':
+            for (int i=2; i<size+2; i++) display[offset][i]=2;
+            for (int i=2; i<size+2; i++) display[offset+size+1][i]=2;
+            for (int i=size+3; i<2*size+3; i++) display[offset+size+1][i]=2;
+            for (int i=size+3; i<2*size+3; i++) display[offset][i]=2;
+            for (int i=offset+1; i<offset+size+1; i++) display[i][1]=1;
+            for (int i=offset+1; i<offset+size+1; i++) display[i][2*size+3]=1;
+            break;
+    }
+}
+//---------------------------------------------------------------------------

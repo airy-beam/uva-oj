@@ -1,0 +1,42 @@
+#include <iostream>
+#include <string.h>
+#include <sstream>
+#include <stdlib.h>
+
+using namespace std;
+
+bool palindrome(unsigned long, unsigned long&);
+
+int main() 
+{
+    using namespace std;
+    int testsNumber;
+    cin >> testsNumber;
+    
+    for (int tests=0; tests<testsNumber; tests++)
+    {
+        unsigned long p, r;
+        cin >> p;
+        
+        int iterations = 0;
+        while (!palindrome(p, r))
+        {
+            p += r;
+            iterations++;
+        }
+        cout << iterations << " " << p << endl;
+    }
+    
+    return 0;
+}
+
+bool palindrome(unsigned long a, unsigned long& r)
+{
+    stringstream ss;
+    ss << a;
+    string s = ss.str();
+    string rs;
+    rs.assign(s.rbegin(), s.rend());
+    r = atol(rs.c_str());
+    if (s==rs) return true; else return false;
+}
